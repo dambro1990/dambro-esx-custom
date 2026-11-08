@@ -1,8 +1,8 @@
 $engine: 3
 $onesync: on
-name: ESX Legacy
+name: ESX Legacy Slim
 author: ESX Framework
-description: The official recipe of the most popular FiveM RP framework, containing Jobs, Housing, Vehicles & more!
+description: ESX Legacy ufficiale, alleggerita (rimossi addon non essenziali).
 
 tasks:
   # Download default CFX resources
@@ -79,6 +79,34 @@ tasks:
   - action: unzip
     dest: ./resources/[standalone]
     src: ./tmp/files/ox_lib.zip
+
+  ## Rimozione addon non essenziali (riaggiungi quelli che ti servono togliendo le righe)
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_adminmenu
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_animations
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_boat
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_cruisecontrol
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_drugs
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_jobs
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_joblisting
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_optionalneeds
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_pausemenu
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_scoreboard
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_taxijob
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_weather
+  - action: remove_path
+    path: ./resources/[esx_addons]/esx_weaponshop
 
   ## Cleanup
   - action: remove_path
