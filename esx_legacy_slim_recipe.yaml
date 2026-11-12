@@ -1,15 +1,14 @@
 $engine: 3
 $onesync: on
 
-name: ESX Legacy Slim - Ox Edition
+name: ESX Legacy Slim - FiveM Appearance
 author: Dambro Development
-description: Minimal ESX Legacy framework with ox_lib, ox_target, ox_inventory and oxmysql. No RP addons or jobs.
+description: Minimal ESX Legacy base with ox_lib, ox_target, ox_inventory, oxmysql and fivem-appearance. No preinstalled RP jobs or addons.
 
 tasks:
   # ==========================================
   # DEFAULT CFX RESOURCES
   # ==========================================
-
   - action: download_github
     src: https://github.com/citizenfx/cfx-server-data
     ref: master
@@ -19,7 +18,6 @@ tasks:
   # ==========================================
   # OFFICIAL ESX SERVER CONFIGURATION
   # ==========================================
-
   - action: download_github
     src: https://github.com/esx-framework/esx-recipes
     ref: legacy
@@ -36,13 +34,13 @@ tasks:
   # ==========================================
   # DATABASE
   # ==========================================
-
   - action: connect_database
 
   # ==========================================
   # ESX LEGACY CORE
+  # Keep the official ESX core resources for compatibility
+  # with third-party ESX scripts.
   # ==========================================
-
   - action: download_github
     src: https://github.com/esx-framework/esx-core
     ref: main
@@ -58,7 +56,6 @@ tasks:
   # ==========================================
   # OXMYSQL
   # ==========================================
-
   - action: download_file
     url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
     path: ./tmp/files/oxmysql.zip
@@ -70,7 +67,6 @@ tasks:
   # ==========================================
   # OX_LIB
   # ==========================================
-
   - action: download_file
     url: https://github.com/overextended/ox_lib/releases/latest/download/ox_lib.zip
     path: ./tmp/files/ox_lib.zip
@@ -82,7 +78,6 @@ tasks:
   # ==========================================
   # OX_TARGET
   # ==========================================
-
   - action: download_file
     url: https://github.com/overextended/ox_target/releases/latest/download/ox_target.zip
     path: ./tmp/files/ox_target.zip
@@ -94,7 +89,6 @@ tasks:
   # ==========================================
   # OX_INVENTORY
   # ==========================================
-
   - action: download_file
     url: https://github.com/overextended/ox_inventory/releases/latest/download/ox_inventory.zip
     path: ./tmp/files/ox_inventory.zip
@@ -104,8 +98,29 @@ tasks:
     dest: ./resources/[standalone]
 
   # ==========================================
+  # FIVEM-APPEARANCE
+  # Official Wasabi fivem-appearance resource.
+  # Replaces esx_skin and skinchanger.
+  # ==========================================
+  - action: download_github
+    src: https://github.com/wasabirobby/fivem-appearance
+    ref: main
+    dest: ./resources/[core]/fivem-appearance
+
+  # ==========================================
+  # REMOVE CONFLICTING / INCOMPATIBLE ESX APPEARANCE
+  # fivem-appearance must be the only appearance provider.
+  # The Wasabi resource declares compatibility providers for
+  # esx_skin and skinchanger, so ESX multicharacter can remain.
+  # ==========================================
+  - action: remove_path
+    path: ./resources/[core]/esx_skin
+
+  - action: remove_path
+    path: ./resources/[core]/skinchanger
+
+  # ==========================================
   # CLEANUP
   # ==========================================
-
   - action: remove_path
     path: ./tmp
